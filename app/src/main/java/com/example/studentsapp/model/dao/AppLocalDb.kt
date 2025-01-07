@@ -2,9 +2,9 @@ package com.example.studentsapp.model.dao
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import android.content.Context
 import androidx.room.Room
 import com.example.studentsapp.base.StudentsApp
+import com.example.studentsapp.model.Student
 
 @Database(entities = [Student::class], version = 2)
 abstract class AppLocalDbRepository : RoomDatabase() {

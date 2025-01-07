@@ -1,4 +1,4 @@
-package com.example.studentsapp.model.dao
+package com.example.studentsapp.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
