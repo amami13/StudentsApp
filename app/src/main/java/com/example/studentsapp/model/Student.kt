@@ -1,13 +1,9 @@
 package com.example.studentsapp.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity
 data class Student(
-    @PrimaryKey val id: String,
+    val id: String,
     val name: String,
-    val phone: Int,
+    val phone: String,
     val address: String,
     val isChecked: Boolean
 )
