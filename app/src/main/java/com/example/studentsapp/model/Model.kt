@@ -2,53 +2,52 @@ package com.example.studentsapp.model
 
 class Model private constructor() {
 
-    val students: MutableList<Student> = ArrayList()
+    // Hash map of students by ID
+    private val students: MutableMap<String, Student> = HashMap()
 
     companion object {
         val shared = Model()
     }
 
-
     // Add a new student
     fun addStudent(student: Student) {
-        students.add(student)
+        students[student.id] = student
     }
 
     // Get all students
     fun getAllStudents(): List<Student> {
-        return students.toList() // Return a copy to prevent modification
+        return students.values.toList()
     }
 
-    // Update an existing student
+    // Update an existing student and return if update was successful
     fun updateStudent(updatedStudent: Student): Boolean {
-        val index = students.indexOfFirst { it.id == updatedStudent.id }
-        return if (index != -1) {
-            students[index] = updatedStudent
-            true
+        if (students.containsKey(updatedStudent.id)) {
+            students[updatedStudent.id] = updatedStudent
+            return true
         } else {
-            false
+            return false
         }
     }
 
-    // Delete a student
+    // Delete a student and return if the removal was successful
     fun deleteStudent(studentId: String): Boolean {
-        return students.removeIf { it.id == studentId }
+        return students.remove(studentId) != null
     }
 
     // Get a single student by ID
     fun getStudentById(studentId: String): Student? {
-        return students.find { it.id == studentId }
+        return students[studentId]
     }
 
-    // Toggle the 'isChecked' status of a student
+    // Toggle the 'isChecked' status of a student and return if action was successful
     fun toggleStudentChecked(studentId: String): Boolean {
-        val student = students.find { it.id == studentId }
-        return if (student != null) {
+        val student = students[studentId]
+        if (student != null) {
             val updatedStudent = student.copy(isChecked = !student.isChecked)
-            updateStudent(updatedStudent)
-            true
+            students[studentId] = updatedStudent
+            return true
         } else {
-            false
+            return false
         }
     }
 }
