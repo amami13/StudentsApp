@@ -9,6 +9,19 @@ class Model private constructor() {
         val shared = Model()
     }
 
+    init {
+        for (i in 0..20) {
+            val student = Student(
+                id = "$i",
+                name = "Name $i",
+                phone = "0549999999",
+                address = "Ben Gurion $i Tel Aviv",
+                isChecked = false
+            )
+            students[student.id] = student
+        }
+    }
+
     // Add a new student
     fun addStudent(student: Student) {
         students[student.id] = student
