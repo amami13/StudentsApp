@@ -22,6 +22,12 @@ class StudentsListActivity : AppCompatActivity() {
             insets
         }
 
+        val addStudentButton: Button = findViewById(R.id.add_student_button)
+        addStudentButton.setOnClickListener {
+            val intent = Intent(this, AddStudentActivity::class.java) // Intent to open the AddStudentActivity
+            startActivity(intent)
+        }
+
         val studentsRecyclerView: RecyclerView = findViewById(R.id.students_recycler_view)
 
         // Get the list of students from the model
@@ -30,10 +36,17 @@ class StudentsListActivity : AppCompatActivity() {
         // Set up the adapter and recycler view
         studentsRecyclerView.adapter = StudentsAdapter(this, students)
 
-        val addStudentButton: Button = findViewById(R.id.add_student_button)
-        addStudentButton.setOnClickListener {
-            val intent = Intent(this, AddStudentActivity::class.java) // Intent to open the AddStudentActivity
-            startActivity(intent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val students = Model.shared.getAllStudents() // Fetch updated list
+        val studentsRecyclerView: RecyclerView = findViewById(R.id.students_recycler_view)
+        val adapter = studentsRecyclerView.adapter
+
+        if (adapter is StudentsAdapter) {
+            adapter.updateStudents(students)
         }
     }
 }

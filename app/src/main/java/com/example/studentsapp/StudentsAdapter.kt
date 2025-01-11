@@ -11,7 +11,7 @@ import com.example.studentsapp.model.Student
 
 class StudentsAdapter(
     private val context: Context,
-    private val students: List<Student>
+    private var students: List<Student>
 ) : RecyclerView.Adapter<StudentsAdapter.StudentViewHolder>() {
 
     class StudentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -39,5 +39,10 @@ class StudentsAdapter(
 
     override fun getItemCount(): Int {
         return students.size
+    }
+
+    fun updateStudents(newStudents: List<Student>) {
+        this.students = newStudents
+        notifyDataSetChanged()
     }
 }
