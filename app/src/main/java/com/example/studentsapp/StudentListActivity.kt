@@ -7,6 +7,8 @@ import com.example.studentsapp.model.Model
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.widget.Button
+import android.content.Intent
 
 class StudentsListActivity : AppCompatActivity() {
 
@@ -27,5 +29,11 @@ class StudentsListActivity : AppCompatActivity() {
 
         // Set up the adapter and recycler view
         studentsRecyclerView.adapter = StudentsAdapter(this, students)
+
+        val addStudentButton: Button = findViewById(R.id.add_student_button)
+        addStudentButton.setOnClickListener {
+            val intent = Intent(this, AddStudentActivity::class.java) // Intent to open the AddStudentActivity
+            startActivity(intent)
+        }
     }
 }
