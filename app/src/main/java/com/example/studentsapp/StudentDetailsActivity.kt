@@ -41,8 +41,7 @@ class StudentDetailsActivity : AppCompatActivity() {
         editButton = findViewById(R.id.student_details_edit_button)
 
         // Retrieve the student ID passed via intent
-        studentId = "1";
-//        studentId = intent.getStringExtra("STUDENT_ID") ?: return
+        studentId = intent.getStringExtra("STUDENT_ID") ?: return
 
         // Set up Edit button listener
         editButton?.setOnClickListener {

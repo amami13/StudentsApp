@@ -5,5 +5,5 @@ data class Student(
     val name: String,
     val phone: String,
     val address: String,
-    val isChecked: Boolean
+    var isChecked: Boolean
 )
