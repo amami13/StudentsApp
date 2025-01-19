@@ -9,7 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.studentsapp.adapter.StudentsRecyclerAdapter
+import com.example.studentsapp.adapter.StudentsAdapter
 import com.example.studentsapp.model.Model
 import com.example.studentsapp.model.Student
 
@@ -43,7 +43,7 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         // Set up adapter
-        val adapter = StudentsRecyclerAdapter(students)
+        val adapter = StudentsAdapter(students)
         adapter.listener = object : OnItemClickListener {
             override fun onItemClick(position: Int) {
                 Log.d("TAG", "Item clicked at position: $position")

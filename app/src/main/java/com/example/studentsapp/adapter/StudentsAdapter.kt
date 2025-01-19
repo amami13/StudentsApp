@@ -7,7 +7,7 @@ import com.example.studentsapp.OnItemClickListener
 import com.example.studentsapp.R
 import com.example.studentsapp.model.Student
 
-class StudentsRecyclerAdapter(private val students: MutableList<Student>?): RecyclerView.Adapter<StudentViewHolder>() {
+class StudentsAdapter(private val students: MutableList<Student>?): RecyclerView.Adapter<StudentViewHolder>() {
     var listener: OnItemClickListener? = null
     override fun getItemCount(): Int = students?.size ?: 0
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
