@@ -2,14 +2,16 @@ package com.example.studentsapp.model
 
 class Model private constructor() {
 
-    // Hash map of students by ID
-    private val students: MutableMap<String, Student> = HashMap()
+    // Array list of students
+    val students: MutableList<Student> = ArrayList()
 
     companion object {
         val shared = Model()
     }
 
     init {
+
+        // Create an Array for 20 mock students
         for (i in 0..20) {
             val student = Student(
                 id = "$i",
@@ -18,49 +20,56 @@ class Model private constructor() {
                 address = "Ben Gurion $i Tel Aviv",
                 isChecked = false
             )
-            students[student.id] = student
+            students.add(student)
         }
     }
 
     // Add a new student
     fun addStudent(student: Student) {
-        students[student.id] = student
+        students.add(student)
     }
 
     // Get all students
     fun getAllStudents(): List<Student> {
-        return students.values.toList()
+        return students
     }
 
     // Update an existing student and return if update was successful
     fun updateStudent(updatedStudent: Student): Boolean {
-        if (students.containsKey(updatedStudent.id)) {
-            students[updatedStudent.id] = updatedStudent
-            return true
+        val index = students.indexOfFirst { it.id == updatedStudent.id }
+        return if (index != -1) {
+            students[index] = updatedStudent
+            true
         } else {
-            return false
+            false
         }
     }
 
     // Delete a student and return if the removal was successful
     fun deleteStudent(studentId: String): Boolean {
-        return students.remove(studentId) != null
+        val index = students.indexOfFirst { it.id == studentId }
+        return if (index != -1) {
+            students.removeAt(index)
+            true
+        } else {
+            false
+        }
     }
 
     // Get a single student by ID
     fun getStudentById(studentId: String): Student? {
-        return students[studentId]
+        return students.find { it.id == studentId }
     }
 
     // Toggle the 'isChecked' status of a student and return if action was successful
     fun toggleStudentChecked(studentId: String): Boolean {
-        val student = students[studentId]
-        if (student != null) {
-            val updatedStudent = student.copy(isChecked = !student.isChecked)
-            students[studentId] = updatedStudent
-            return true
+        val index = students.indexOfFirst { it.id == studentId }
+        return if (index != -1) {
+            val student = students[index]
+            students[index] = student.copy(isChecked = !student.isChecked)
+            true
         } else {
-            return false
+            false
         }
     }
 }

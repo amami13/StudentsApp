@@ -9,8 +9,6 @@
     android:padding="16dp">
 
     <!-- Student Image -->
-
-    <!-- Student Name -->
     <ImageView
         android:id="@+id/student_details_image_view"
         android:layout_width="100dp"
@@ -24,6 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/avatar" />
 
+    <!-- Student Name -->
     <TextView
         android:id="@+id/student_details_name_text_view"
         android:layout_width="0dp"
