@@ -39,6 +39,10 @@ class StudentViewHolder(
         this.student = student
         nameTextView?.text = student?.name
         idTextView?.text = student?.id
-        studentCheckBox?.isChecked = student?.isChecked ?: false
+
+        studentCheckBox?.apply {
+            isChecked = student?.isChecked ?: false
+            tag = position
+        }
     }
 }
