@@ -23,7 +23,7 @@ class StudentViewHolder(
         idTextView = itemView.findViewById(R.id.student_row_id_text_view)
         studentCheckBox = itemView.findViewById(R.id.student_row_check_box)
 
-        studentCheckBox?.setOnCheckedChangeListener { _, isChecked ->
+        studentCheckBox?.setOnClickListener {
             student?.let{
                 Model.shared.toggleStudentChecked(it.id)
             }
