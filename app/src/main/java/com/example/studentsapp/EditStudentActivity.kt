@@ -67,7 +67,7 @@ class EditStudentActivity : AppCompatActivity() {
                 address = addressEditText.text.toString(),
                 isChecked = checkedCheckBox.isChecked
             )
-            Model.shared.updateStudent(updatedStudent)
+            Model.shared.updateStudent(studentId, updatedStudent)
             finish()
         }
     }
