@@ -35,8 +35,8 @@ class Model private constructor() {
     }
 
     // Update an existing student and return if update was successful
-    fun updateStudent(updatedStudent: Student): Boolean {
-        val index = students.indexOfFirst { it.id == updatedStudent.id }
+    fun updateStudent(originalId: String, updatedStudent: Student): Boolean {
+        val index = students.indexOfFirst { it.id == originalId }
         return if (index != -1) {
             students[index] = updatedStudent
             true
@@ -44,6 +44,7 @@ class Model private constructor() {
             false
         }
     }
+
 
     // Delete a student and return if the removal was successful
     fun deleteStudent(studentId: String): Boolean {
